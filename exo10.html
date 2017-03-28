@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>formulaire valider</title>
+  <script
+  src="http://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+  <!--
+
+  Réalisez un formulaire d'inscription avec trois champs : pseudo, âge et email.
+
+  - Vous réaliserez les contrôles suivant avant de pouvoir envoyer le formulaire :
+
+  - le pseudo doit contenir entre 4 et 25 caractères.
+
+  - l'âge doit être un nombre et supérieur à 18 ans.
+
+  - l'email doit respecter le format d'un email. Pour cela, utilisez une expression régulière qui valide son format.
+
+
+
+  Chaque contrôle donne lieu à l'affichage d'une croix à côté du champ correspondant s'il est faux, ou d'une coche s'il est juste.
+
+  - Les contrôles s'effectuent deux fois : lors de la saisie dans les champs, et lorsque l'internaute valide le formulaire (rempli ou non).
+
+  - L'envoi du formulaire doit être bloqué si l'un des contrôles est faux.
+
+-->
+
+<meta charset="UTF-8" />
+
+<title>Formulaire</title>
+
+<script src="jquery.js"></script>
+
+</head>
+
+<body>
+
+  <h3>Inscription</h3>
+
+  <div id="message"></div>
+
+  <form method="post" action="">
+
+    <label for="pseudo">Pseudo :</label><br>
+
+    <input type="text" id="pseudo"><span id="verifPseudo"></span><br>
+
+
+    <label for="age">Age :</label><br>
+
+    <input type="text" id="age"><span id="verifAge"></span><br>
+
+
+    <label for="email">Email :</label><br>
+
+    <input type="text" id="email"><span id="verifEmail"></span><br>
+
+    <input type="submit" value="Valider">
+
+  </form>
+  <script type="text/javascript">
+
+  $(function(){
+    //declaration des 3 functions
+  function verifPseudo(){
+    var $champ =$('#pseudo');//par convention la variable $champ $ car on lui affecte un element selectionné
+  }
+    // $('#pseudo').keydown(function(){
+      if($('#pseudo').val().length < 4 || $('#pseudo').val().length > 25 ) {
+        $('#verifPseudo').html('<img src ="cross.png">');
+        return false;
+      }
+      else {
+        $('#verifPseudo').html('<img src ="checked.png">')
+        return true
+
+      }
+    }
+    // on appelle toutes les fonctions :
+    $('#pseudo').on('input, verifPseudo');
+    // // });
+    // $('#age').keyup(
+      function verifAge(){
+      // pour afficher la console dans le debug
+      console.log($('#age').val());
+      if( $.isNumeric($('#age').val()) && $('#age').val()>=18){
+
+        $('#verifAge').html('<img src ="checked.png">');
+        return true
+      }
+      else{
+        $('#verifAge').html('<img src ="cross.png">');
+        return false
+      }
+
+    });
+    $('#email').keydown(function(){
+      if($('#email').val()=== x.indexOf("@") ) {
+        $('#verifEmail').html('<img src ="cross.png">');
+      }
+      else {
+        $('#verifEmail').html('<img src ="checked.png">')
+
+      }
+    });
+  });//fin du document ready
+  </script>
+
+</body>
+</html>
