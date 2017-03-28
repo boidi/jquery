@@ -26,11 +26,18 @@
           $('.focus').focusin(function(){
           $(this).css('border','2px solid green');
           $('focus').focusout(function(){
+            // retabli la valeur css initiale
           $(this).css('border','');
         });
         });
 
       });
+      //autre façon d'ecrire la methode css permet de faire + de css avec jq
+        // $(this).css({'border','2px solid green';'background:yellow'});
+        // this :mot clé qui renvoie systematique à l'objet (la balise ) dans laquelle on se situe
+        // focusin va avec le focusout;ils s'appliquent aussi aux enfants.il y existe ausii focus qui va avec blur:
+        // il ne s'appliquent qu'aux inputs de formulaire/
+        // addClass("class1 class2");
     </script>
 
 

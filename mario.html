@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>mario qui se deplace</title>
+    <script
+        src="http://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+
+    <style media="screen">
+    img {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.jeu{
+  background: rgba(98, 227, 247, 0.71);
+  width: 40%;
+  height: 300px;
+}
+    </style>
+  </head>
+  <body>
+    <div class="jeu">
+
+
+     <img src="http://i1061.photobucket.com/albums/t480/ericqweinstein/mario.jpg"/>  </div>
+     <script type="text/javascript">
+     $(function(){
+     $(document).keydown(function(key) {
+     switch(parseInt(key.which,10)) {
+   // On a appuyé sur la touche flèche gauche
+   case 37:
+     $('img').animate({left: "-=10px"}, 'fast');
+     break;
+   // On a appuyé sur la touche flèche vers le haut
+   case 38:
+     // Ecrivez votre code ici
+     $('img').animate({top: "+=10px"}, 'fast');
+     break;
+   // On a appuyé sur la touche flèche droite
+   case 39:
+     // Ecrivez votre code ici
+     $('img').animate({left: "+=10px"},'fast');
+     break;
+   // On a appuyé sur la touche flèche vers le bas
+   case 40:
+     // Ecrivez votre code ici
+     $('img').animate({top: "+=10px"}, 'fast');
+     break;
+ }
+});
+});
+     </script>
+  </body>
+</html>
