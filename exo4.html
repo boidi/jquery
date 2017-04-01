@@ -12,7 +12,7 @@
         </style>
 
   </head>
-  <!-- creer un formulaire avec un input pseudo et un input mdp .lorsqu'on clique dans l'un des champs, sa bordure devient verte et de 2px d'epaisseurquand on le quitte il reprend sa forme initiale -->
+  <!-- creer un formulaire avec un input pseudo et un input mdp .lorsqu'on clique dans l'un des champs, sa bordure devient verte et de 2px d'epaisseur quand on le quitte il reprend sa forme initiale -->
   <body>
     <form class="" action="" method="post">
       <label for="pseudo">pseudo</label>
@@ -25,7 +25,7 @@
         $(function(){
           $('.focus').focusin(function(){
           $(this).css('border','2px solid green');
-          $('focus').focusout(function(){
+          $('.focus').focusout(function(){
             // retabli la valeur css initiale
           $(this).css('border','');
         });

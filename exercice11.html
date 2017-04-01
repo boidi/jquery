@@ -1,0 +1,98 @@
+<!--
+Vous allez réaliser un slider à partir du HTML donné.
+    -> Les images défilent toutes les 3 secondes et à l'infini.
+
+Dans un second temps, vous développez la fonctionnalité de pause : lorsqu'on clique sur l'image, le slider se met en pause s'il tourne, sinon il redémarre.
+
+ -->
+
+
+<!DOCTYPE html>
+<html>
+    <head lang="fr">
+        <meta charset="UTF-8">
+        <title>Slider</title>
+        <script
+        src="http://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+        <style>
+            body {
+                background: #12121C;
+            }
+            .slider {
+                position: relative;
+                width: 45vw;
+                height: 30vw;
+				margin: 0 auto;
+                margin-top: 50vh;
+                transform: translateY(-50%);
+				border: 10px solid #fff;
+                border-radius: 5px;
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 1);
+            }
+            img {
+                position: absolute;
+                display: none;
+                width: 100%;
+                height: 100%;
+            }
+            img:first-of-type {
+                display: block;
+            }
+
+        </style>
+        <script src="jquery.js"></script>
+    </head>
+<body>
+    <div class="slider">
+
+        <img src="a.jpg" alt="">  <!--  indice 0 -->
+        <img src="b.jpg" alt="">  <!--  indice 1 -->
+        <img src="c.jpg" alt="">  <!--  indice 2 -->
+        <img src="d.jpg" alt="">  <!--  indice 3 -->
+
+    </div>
+    <script>
+        $(function(){
+            // initialisation des variables :
+            var indice = 1;  // représente l'indice de l'image
+            var tourne = true;  // indique que le slider tourne
+            var nbImage = $("img").length; // propriété qui indique le nombre d'éléments sélectionnés, ici 4 images
+
+            // Déclaration d'une fonction d'affichage des images :
+            function affiche(){
+                if(indice == nbImage) {
+                    indice = 0;
+                    $("img").hide();
+                }
+
+                // Affiche l'image :
+                $("img").eq(indice).show();
+
+                indice++;  // incrémentation (+1)
+            }
+
+
+            // fonction pour la pause :
+            $("img").click(function(){
+                if(tourne){ // si le slider tourne :
+                    clearInterval(timer); // on arrête le setInterval
+                    tourne = false; // et on indique que le slider est à l'arrêt
+                } else {
+                    affiche(); // pour relancer immédiatement le slider
+                    timer = setInterval(affiche, 3000); // on relance l'appel de la fonction affiche() toutes les 3s
+                    tourne = true; // on indique que le slider est en marche
+                }
+
+            });
+
+
+            // Appel de la fonction affiche() :
+            var timer = setInterval(affiche, 3000); // appel la fonction affiche() toutes les 3s
+
+        }); // fin du document ready
+    </script>
+</body>
+
+</html>

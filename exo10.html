@@ -68,49 +68,82 @@
 
   $(function(){
     //declaration des 3 functions
-  function verifPseudo(){
-    var $champ =$('#pseudo');//par convention la variable $champ $ car on lui affecte un element selectionné
-  }
+    function verifPseudo(){
+      // var $ champ =$('#pseudo');//par convention la variable $champ $ car on lui affecte un element selectionné
+
     // $('#pseudo').keydown(function(){
-      if($('#pseudo').val().length < 4 || $('#pseudo').val().length > 25 ) {
-        $('#verifPseudo').html('<img src ="cross.png">');
-        return false;
-      }
-      else {
-        $('#verifPseudo').html('<img src ="checked.png">')
-        return true
-
-      }
+    if($('#pseudo').val().length < 4 || $('#pseudo').val().length > 25 ) {
+      $('#verifPseudo').html('<img src ="cross.png">');
+      return false;
     }
-    // on appelle toutes les fonctions :
-    $('#pseudo').on('input, verifPseudo');
-    // // });
-    // $('#age').keyup(
-      function verifAge(){
-      // pour afficher la console dans le debug
-      console.log($('#age').val());
-      if( $.isNumeric($('#age').val()) && $('#age').val()>=18){
+    else {
+      $('#verifPseudo').html('<img src ="checked.png">')
+      return true;
 
-        $('#verifAge').html('<img src ="checked.png">');
-        return true
-      }
-      else{
-        $('#verifAge').html('<img src ="cross.png">');
-        return false
-      }
+    }
+  }
 
-    });
-    $('#email').keydown(function(){
-      if($('#email').val()=== x.indexOf("@") ) {
-        $('#verifEmail').html('<img src ="cross.png">');
-      }
-      else {
-        $('#verifEmail').html('<img src ="checked.png">')
+  // // });
+  // $('#age').keyup(
+  function verifAge(){
+    // pour afficher la console dans le debug
+    // console.log($('#age').val());
+    if( $.isNumeric($('#age').val()) && $('#age').val()>=18){
 
-      }
-    });
-  });//fin du document ready
-  </script>
+      $('#verifAge').html('<img src ="checked.png">');
+      return true;
+    }
+    else{
+      $('#verifAge').html('<img src ="cross.png">');
+      return false;
+    }
+
+  }
+  // function verifEmail
+  function verifEmail(){
+    var $champ=$('#email');
+    // test du format de l'email
+    // un quantificayeur
+    if( /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/.test($champ.val())){
+      // si l'email correspond à l'expr reguliere
+      $('#verifEmail').html('<img src ="checked.png">')
+      return true;
+    }else {
+      $('#verifEmail').html('<img src ="cross.png">');
+      return false;
+    }
+  }
+  // on appelle toutes les fonctions :
+  // function verifPseudo
+  $('#pseudo').on('input', verifPseudo);
+  $('#age').on('input',verifAge);
+  $('#email').on('input', verifEmail);//l'evenement se declenche au changement de contenu du champ
+  // on verifie tous les champ quand on clique sur valider
+  $('form').submit(function(){
+    var veriffinalPseudo = verifPseudo();
+    var veriffinalAge = verifAge();
+    var veriffinalEmail=verifEmail();
+    if(veriffinalPseudo && veriffinalEmail &&  veriffinalAge) {
+      return true;
+       //le formulaire est validé
+    }else {
+      // return false; // le formulaire est bloqué
+      alert('verifier votre mot de passe,pseudo,ou age est au bon format');
+    }
+  });
+
+});
+// });
+//fin du document ready
+// expression reguliere . on encadre une expression reguliere par des slash(/ debut à la fin)
+// $definit la fin de l'expresion.Par consequent l'emploi combiner de ^ et $signifie que l'experssion reguliere definit l'integralité de ce qui est autorisé.
+// l'intervalle des lettre de a à z (en minuscule) des chiffres de 0 a 9 et on autorise aussi le . le _ et le -
+// le + est un quantificateur : les caracteres peuvent etre presents plusieurs fois
+// on retouve @
+/*on retouve le meme interval de lettres /chiffres qu'au dessus suivi du quantificateur+ pour plusieurs fois
+on trouve . de l'email qui doit etre echapper avec \
+quantificateur {2,6}pour presentes 2 ou 6 fois max*/
+</script>
 
 </body>
 </html>

@@ -7,17 +7,46 @@
         src="http://code.jquery.com/jquery-3.2.1.js"
         integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
         crossorigin="anonymous"></script>
+        <style type="text/css" >
+          .rouge{color:red;}
+          .bleu{background: cyan;width: 300px;}
+        </style>
 
   </head>
   <body>
-
-
+    <h2>exo1</h2>
     <button type="button" id="affiche">afficher</button>
     <!--cacher le texte  -->
-    <div style ="display:none;" id="madiv">
-    <p>mon texte à afficher</p>
+    <div style ="display:none;width:40%;background:rgb(189, 226, 232)" id="madiv">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   </div>
+  <hr>
+  <h2>exo2</h2>
+  <!--ajouter du jquery qui permet de mettre en rouge le texte au survol (il redevient noir quand on le quitte ) et qui permet de mettre ou de retirer le bg du texte en bleu quand on clique sur le bouton.) en utilisant le style css  -->
+
+  <p id ="survol"> ce texte va changer de couleur au survol </p>
+  <button id="classBleu"> le background du texte devient bleu</button>
+  <hr>
+  <h2>exo3</h2>
+  <!-- creer un formulaire avec un input mdp.
+  mdp saisi doit être masqué .A coté de l'input un boutton voir qui permet d'affiché le mdp en clair lorsque enfonce la souris sur celle-ci puis le mdp se masque ;
+-->
+  <form method="post" action="">
+    <p>mot de passe <input type="password" id="monmdp">
+      <button type="button" id="mybutton"> voir</button></p>
+    </form>
+    <hr>
+    <h2>exo4</h2>
+    <form class="" action="" method="post">
+      <label for="pseudo">pseudo</label>
+      <input type="text" class="focus">
+      <label for="mdp">mdp</label>
+      <input type="password" class="focus">
+      <button type="submit" name="button">se connecter</button>
+    </form>
+
   <script type="text/javascript">
+  // ameliorer avec un autre click pour cacher??
   //  methode simplifiée $(function(){})
   $(document).ready(function(){
     //evenement qui
@@ -25,6 +54,33 @@
     $('#affiche').click(function(){
       // on peut ecrire des fonctions js
       $('#madiv').show();
+  });
+  $("#survol").hover(function(){
+    // la methode hover attend 2 fonctions en argument : mouseenter et mousehover
+    //pas de point pour les class qd on va le chercher
+    $(this).addClass('rouge');
+    // addClass permet d'ajouter une class à l'element selectionner prealablement ;toggleClass alterne (ajout et enleve)
+  },function(){ $("#survol").removeClass("rouge");});
+    $("#classBleu").click(function(){
+      // ajoute la class et enleve au click ici au click le style css de la classBleu au p et l'enlève si on reclick.
+      $("#survol").toggleClass('bleu');
+    });
+    $('#mybutton').mousedown(function(){
+      // le mot de passe s'affiche en clair
+      $('#monmdp').attr('type','text');
+      $('#mybutton').mouseup(function(){
+        $('#monmdp').attr('type','password');
+        $('#mybutton').mouseleave(function(){
+          $('#monmdp').attr('type','password');//la methode attr permet de selectionner un attribut et lui affecter une valeur on peut attraper n'importe quelle attribut et lui donner n'importe quelle valeur
+        });
+      });
+    });
+    $('.focus').focusin(function(){
+    $(this).css('border','2px solid red');
+    $('.focus').focusout(function(){
+      // retabli la valeur css initiale
+    $(this).css('border','');
+  });
   });
 });
   </script>
